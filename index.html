@@ -994,6 +994,7 @@ const COLS = {
   tat1:       'triage1tat(b-a)min',
   triageEnd:  'triageendttime(c)',
   docSeen:    'doctorseentime(e)',
+  doctorTat:  'doctortat(e-d)min',
   speciality: 'triagespeciality',
   doctor:     'triagedoctor',
   erStatus:   'erstatus',
@@ -1023,17 +1024,13 @@ function parseRows(raw) {
     const erStatus   = getV(row, lup, COLS.erStatus);
     const ctas       = getV(row, lup, COLS.ctas);
     const arrival    = getV(row, lup, COLS.arrival);
+    const doctorTatStr = getV(row, lup, COLS.doctorTat);
 
     const tat1 = (tat1Str !== '' && !isNaN(parseFloat(tat1Str))) ? parseFloat(tat1Str) : null;
 
     let triageToDoc = null;
-    if (triageEnd && docSeen) {
-      const c = parseTS(triageEnd);
-      const e = parseTS(docSeen);
-      if (c && e) {
-        const diff = (e - c) / 60000;
-        if (diff >= 0 && diff < 1440) triageToDoc = parseFloat(diff.toFixed(1));
-      }
+    if (doctorTatStr !== '' && !isNaN(parseFloat(doctorTatStr))) {
+      triageToDoc = parseFloat(doctorTatStr);
     }
 
     return { token, patient, tat1, triageEnd, docSeen, triageToDoc, speciality, doctor, erStatus, ctas, arrival };
@@ -1123,7 +1120,7 @@ function renderKPI(k) {
     { cls: 'blue', label: 'Token to Triage — Average', val: k.avgTT, unit: k.avgTT !== '—' ? 'min' : '', n: k.n, nsub: 'triage-completed patients', foot: 'Source: Triage1 TAT (B-A) column', ico: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>` },
     { cls: 'green', label: 'Token to Triage ≤ 5 min', val: k.w5p !== '—' ? k.w5p : '—', unit: k.w5p !== '—' ? '%' : '', n: k.w5n, nsub: `of ${k.n} patients`, foot: 'TAT 0 – 5 minutes (within target)', ico: `<svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>` },
     { cls: 'amber', label: 'Token to Triage 5–10 min', val: k.w10p !== '—' ? k.w10p : '—', unit: k.w10p !== '—' ? '%' : '', n: k.w10n, nsub: `of ${k.n} patients`, foot: 'TAT above 5 and up to 10 minutes', ico: `<svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>` },
-    { cls: 'teal', label: 'Triage to Consultation — Average', val: k.avgTC, unit: k.avgTC !== '—' ? 'min' : '', n: k.tcN, nsub: 'records with both timestamps', foot: 'Triage End (C) → Doctor Seen (E)', ico: `<svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>` },
+    { cls: 'teal', label: 'Triage to Consultation — Average', val: k.avgTC, unit: k.avgTC !== '—' ? 'min' : '', n: k.tcN, nsub: 'records with Doctor TAT', foot: 'Doctor T A T (E - D) column', ico: `<svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>` },
   ];
 
   document.getElementById('kpi-grid').innerHTML = cards.map(c => `
@@ -1147,7 +1144,7 @@ function renderSummary(k) {
     { i: 1, cls: 'blue', name: 'Token to Triage — Average TAT', sub: 'Read from Triage1 TAT (B-A)min column · minutes', val: k.avgTT !== '—' ? `${k.avgTT} min` : '—', pct: null, count: k.n, base: k.n },
     { i: 2, cls: 'green', name: 'Token to Triage ≤ 5 min', sub: 'Patients with TAT 0–5 min (within target)', val: `${k.w5n} patients`, pct: k.w5p, pctColor: '#22c55e', count: k.w5n, base: k.n },
     { i: 3, cls: 'amber', name: 'Token to Triage 5–10 min', sub: 'Patients with TAT above 5 and up to 10 min', val: `${k.w10n} patients`, pct: k.w10p, pctColor: '#f59e0b', count: k.w10n, base: k.n },
-    { i: 4, cls: 'teal', name: 'Triage to Consultation — Average TAT', sub: 'Triage End Time (C) → Doctor Seen Time (E) · minutes', val: k.avgTC !== '—' ? `${k.avgTC} min` : '—', pct: null, count: k.tcN, base: k.n },
+    { i: 4, cls: 'teal', name: 'Triage to Consultation — Average TAT', sub: 'Doctor T A T (E - D) column · minutes', val: k.avgTC !== '—' ? `${k.avgTC} min` : '—', pct: null, count: k.tcN, base: k.n },
   ];
 
   document.getElementById('sum-body').innerHTML = rows.map(r => `
@@ -1252,11 +1249,11 @@ function dlExcel() {
     [1, 'Token to Triage — Average TAT', k.avgTT, 'minutes', 'N/A', k.n, k.n],
     [2, 'Token to Triage ≤ 5 min', k.w5n, 'patients', k.w5p + '%', k.w5n, k.n],
     [3, 'Token to Triage 5–10 min', k.w10n, 'patients', k.w10p + '%', k.w10n, k.n],
-    [4, 'Triage to Consultation — Average TAT (C→E)', k.avgTC, 'minutes', 'N/A', k.tcN, k.n],
+    [4, 'Triage to Consultation — Average TAT (Doctor TAT)', k.avgTC, 'minutes', 'N/A', k.tcN, k.n],
   ];
 
   const detail = [
-    ['Token No','Patient Name','Token→Triage (min)','Triage End Time (C)','Doctor Seen Time (E)','Triage→Doctor (min)','CTAS Level','Speciality','Triage Doctor','ER Status'],
+    ['Token No','Patient Name','Token→Triage (min)','Triage End Time (C)','Doctor Seen Time (E)','Doctor TAT (E-D) (min)','CTAS Level','Speciality','Triage Doctor','ER Status'],
     ...FILT.map(r => [r.token, r.patient, r.tat1 !== null ? r.tat1 : '', r.triageEnd, r.docSeen, r.triageToDoc !== null ? r.triageToDoc : '', r.ctas, r.speciality, r.doctor, r.erStatus])
   ];
 
