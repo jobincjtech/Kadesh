@@ -23,17 +23,11 @@
   --txt3: #64748b;
   --blue: #38bdf8;
   --blue2: #2563eb;
-  --blue-l: rgba(56,189,248,.14);
   --green: #22c55e;
-  --green-l: rgba(34,197,94,.12);
   --amber: #f59e0b;
-  --amber-l: rgba(245,158,11,.12);
   --red: #ef4444;
-  --red-l: rgba(239,68,68,.12);
   --teal: #14b8a6;
-  --teal-l: rgba(20,184,166,.12);
   --purple: #8b5cf6;
-  --purple-l: rgba(139,92,246,.12);
   --shadow: 0 10px 35px rgba(2, 8, 23, .28);
   --shadow2: 0 18px 48px rgba(2, 8, 23, .42);
   --glow: 0 0 0 1px rgba(255,255,255,.04), 0 0 28px rgba(56,189,248,.12);
@@ -157,104 +151,6 @@ header {
 .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 7px rgba(34,197,94,.11); }
 
 main { max-width: 1360px; margin: 0 auto; padding: 26px 20px 70px; }
-.hero {
-  display: grid;
-  grid-template-columns: 1.5fr .8fr;
-  gap: 18px;
-  margin-bottom: 18px;
-}
-.hero-card,
-.hero-side {
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 24px;
-  background: linear-gradient(180deg, rgba(15,23,42,.58), rgba(15,23,42,.44));
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(18px);
-  position: relative;
-  overflow: hidden;
-}
-.hero-card { padding: 28px; }
-.hero-side { padding: 22px; display: flex; flex-direction: column; justify-content: space-between; }
-.hero-card::before,
-.hero-side::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, rgba(56,189,248,.08), transparent 35%, rgba(139,92,246,.08));
-  pointer-events: none;
-}
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 12px;
-  border-radius: 999px;
-  background: rgba(56,189,248,.09);
-  border: 1px solid rgba(56,189,248,.22);
-  color: #bae6fd;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .9px;
-  text-transform: uppercase;
-}
-.hero-badge i {
-  width: 8px; height: 8px; border-radius: 50%; background: #22c55e;
-  box-shadow: 0 0 0 6px rgba(34,197,94,.08);
-}
-.hero h1 {
-  margin-top: 16px;
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: 1.06;
-  letter-spacing: -1.4px;
-  color: #fff;
-  max-width: 720px;
-}
-.hero p {
-  margin-top: 12px;
-  max-width: 720px;
-  font-size: 14px;
-  line-height: 1.7;
-  color: #94a3b8;
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 22px;
-}
-.mini {
-  padding: 14px 16px;
-  border-radius: 18px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.07);
-}
-.mini .cap { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #7dd3fc; font-weight: 700; }
-.mini .val { margin-top: 8px; font-size: 22px; font-weight: 800; color: #fff; }
-.mini .sub { margin-top: 4px; font-size: 12px; color: #94a3b8; }
-
-.side-top { position: relative; z-index: 1; }
-.side-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px; color: #7dd3fc; font-weight: 700; }
-.side-big { margin-top: 10px; font-size: 30px; font-weight: 800; letter-spacing: -1px; color: #fff; }
-.side-desc { margin-top: 8px; font-size: 13px; color: #94a3b8; line-height: 1.7; }
-.side-bars { margin-top: 20px; display: grid; gap: 10px; }
-.bar-row { display: grid; grid-template-columns: 110px 1fr 44px; gap: 10px; align-items: center; font-size: 12px; color: #cbd5e1; }
-.bar-row .bar {
-  height: 8px; border-radius: 999px;
-  background: rgba(255,255,255,.08);
-  overflow: hidden;
-}
-.bar-row .bar > span {
-  display: block; height: 100%; border-radius: inherit;
-  background: linear-gradient(90deg, #0ea5e9, #8b5cf6);
-}
-.side-foot {
-  position: relative; z-index: 1;
-  margin-top: 18px;
-  border-top: 1px solid rgba(255,255,255,.08);
-  padding-top: 14px;
-  color: #a5b4fc;
-  font-size: 12px;
-}
 
 .upload,
 .filters,
@@ -263,7 +159,8 @@ main { max-width: 1360px; margin: 0 auto; padding: 26px 20px 70px; }
 .kcard,
 .filebar,
 .actbar,
-.rec-pill {
+.rec-pill,
+.history-wrap {
   backdrop-filter: blur(14px);
 }
 
@@ -313,6 +210,96 @@ main { max-width: 1360px; margin: 0 auto; padding: 26px 20px 70px; }
   font-size: 11px;
   font-family: 'JetBrains Mono', monospace;
   color: #cbd5e1;
+}
+
+.history-wrap {
+  display: none;
+  background: linear-gradient(180deg, rgba(15,23,42,.58), rgba(15,23,42,.44));
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 22px;
+  padding: 16px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+.history-wrap.on { display: block; }
+.history-hdr {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+}
+.history-hdr h3 {
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:#7dd3fc;
+}
+.history-hdr span { font-size:11.5px; color:#94a3b8; }
+.history-list {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+  gap:10px;
+}
+.history-card {
+  background: rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:12px;
+  transition:.18s ease;
+}
+.history-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+  border-color: rgba(56,189,248,.35);
+}
+.history-name {
+  font-size:13px;
+  font-weight:700;
+  color:#fff;
+  word-break:break-word;
+  margin-bottom:6px;
+}
+.history-meta {
+  font-size:11.5px;
+  color:#94a3b8;
+  line-height:1.6;
+}
+.history-actions {
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+.hbtn {
+  border:none;
+  border-radius:12px;
+  padding:8px 11px;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.hbtn.open {
+  background: linear-gradient(135deg, #0ea5e9, #2563eb 60%, #8b5cf6);
+  color:#fff;
+}
+.hbtn.del {
+  background: rgba(239,68,68,.12);
+  color:#fecaca;
+  border:1px solid rgba(239,68,68,.2);
+}
+.hbtn.clear {
+  background: rgba(255,255,255,.06);
+  color:#dbeafe;
+  border:1px solid rgba(255,255,255,.08);
+}
+.history-empty {
+  color:#94a3b8;
+  font-size:13px;
+  padding:14px 2px 4px;
 }
 
 .filebar {
@@ -367,6 +354,7 @@ main { max-width: 1360px; margin: 0 auto; padding: 26px 20px 70px; }
 }
 .fg select option { color: #0f172a; }
 .filt-actions { display: flex; gap: 9px; margin-top: 13px; flex-wrap: wrap; }
+
 .btn-apply,
 .btn-rst,
 .btn-dl,
@@ -391,7 +379,8 @@ main { max-width: 1360px; margin: 0 auto; padding: 26px 20px 70px; }
 .btn-apply:hover,
 .btn-dl:hover,
 .login-btn:hover,
-.lock-btn:hover { transform: translateY(-1px); }
+.lock-btn:hover,
+.hbtn:hover { transform: translateY(-1px); }
 .btn-rst,
 .lock-btn {
   padding: 11px 14px;
@@ -535,6 +524,7 @@ tbody tr:last-child td { border-bottom: none; }
 tbody tr:hover { background: rgba(255,255,255,.03); }
 .mn { font-weight: 700; color: #fff; }
 .msub { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+
 .pill {
   display: inline-block;
   padding: 5px 10px;
@@ -549,10 +539,12 @@ tbody tr:hover { background: rgba(255,255,255,.03); }
 .pill.red    { color: #fee2e2; background: rgba(220,38,38,.22); }
 .pill.teal   { color: #ccfbf1; background: rgba(13,148,136,.22); }
 .pill.purple { color: #ede9fe; background: rgba(124,58,237,.22); }
+
 .brow { display: flex; align-items: center; gap: 8px; }
 .bbg { flex: 1; height: 6px; background: rgba(255,255,255,.08); border-radius: 999px; overflow: hidden; min-width: 80px; }
 .bfill { height: 100%; border-radius: 999px; }
 .btxt { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600; min-width: 48px; color: #e2e8f0; }
+
 .chip {
   display: inline-block;
   background: rgba(255,255,255,.06);
@@ -567,6 +559,7 @@ tbody tr:hover { background: rgba(255,255,255,.03); }
 .sw { position: relative; }
 .sw svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; }
 .srch { padding-left: 32px; width: 220px; }
+
 .pg {
   display: flex;
   align-items: center;
@@ -596,6 +589,7 @@ tbody tr:hover { background: rgba(255,255,255,.03); }
   border-color: transparent;
 }
 .pgb:disabled { opacity: .3; cursor: not-allowed; }
+
 .c2,.c3,.c4,.c5 {
   border-radius: 999px;
   padding: 4px 9px;
@@ -609,7 +603,6 @@ tbody tr:hover { background: rgba(255,255,255,.03); }
 .c5 { background: rgba(100,116,139,.22); color: #e2e8f0; }
 .empty-row { text-align: center; padding: 36px; color: #94a3b8; font-size: 13px; }
 
-/* Login overlay */
 .login-overlay {
   position: fixed;
   inset: 0;
@@ -649,17 +642,6 @@ tbody tr:hover { background: rgba(255,255,255,.03); }
 .login-logo svg { width: 28px; height: 28px; stroke: #fff; fill: none; stroke-width: 2; }
 .login-box h2 { margin-top: 18px; font-size: 30px; letter-spacing: -1px; color: #fff; }
 .login-box p { margin-top: 8px; color: #94a3b8; line-height: 1.7; font-size: 13px; }
-.login-meta {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-  margin: 18px 0 16px;
-}
-.login-mini {
-  padding: 12px; border-radius: 16px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.06);
-}
-.login-mini .k { font-size: 10px; color: #7dd3fc; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
-.login-mini .v { margin-top: 7px; color: #fff; font-size: 14px; font-weight: 700; }
 .login-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-top: 12px; }
 .login-help {
   margin-top: 12px;
@@ -675,29 +657,17 @@ tbody tr:hover { background: rgba(255,255,255,.03); }
   color: #fca5a5;
   font-weight: 600;
 }
-.login-note {
-  margin-top: 14px;
-  padding: 11px 12px;
-  border-radius: 14px;
-  background: rgba(56,189,248,.07);
-  border: 1px solid rgba(56,189,248,.14);
-  color: #bae6fd;
-  font-size: 11.5px;
-  line-height: 1.7;
-}
 .hidden { display: none !important; }
 .top-actions { display:flex; align-items:center; gap:10px; flex-wrap: wrap; }
 .lock-btn { display:inline-flex; align-items:center; gap:7px; }
 .lock-btn svg { width:14px; height:14px; stroke: currentColor; fill:none; stroke-width:2; }
 
 @media (max-width: 1100px) {
-  .hero { grid-template-columns: 1fr; }
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 760px) {
   header { width: calc(100% - 18px); height: auto; padding: 16px; top: 36px; border-radius: 18px; }
-  .hero-card, .hero-side, .filters, .sum-wrap, .det-wrap, .upload { border-radius: 20px; }
-  .hero-grid, .login-meta { grid-template-columns: 1fr; }
+  .filters, .sum-wrap, .det-wrap, .upload, .history-wrap { border-radius: 20px; }
   .login-row { grid-template-columns: 1fr; }
   .kpi-grid { grid-template-columns: 1fr; }
   .srch { width: 100%; }
@@ -706,7 +676,6 @@ tbody tr:hover { background: rgba(255,255,255,.03); }
   main { padding: 16px 12px 48px; }
   header { margin-top: 10px; }
   .hdr-r { display: none; }
-  .hero h1 { font-size: 26px; }
 }
 </style>
 </head>
@@ -723,9 +692,8 @@ tbody tr:hover { background: rgba(255,255,255,.03); }
     <div class="login-logo">
       <svg viewBox="0 0 24 24"><path d="M12 1l8 4v6c0 5-3.5 9.5-8 11-4.5-1.5-8-6-8-11V5l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
     </div>
-    <h2>                Triage TAT</h2>
+    <h2>Triage TAT</h2>
     <p>Emergency Department · Daily KPI Report.</p>
-
 
     <div class="login-row">
       <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="current-password">
@@ -772,6 +740,17 @@ tbody tr:hover { background: rgba(255,255,255,.03); }
       <h2>Upload Daily Triage TAT Excel File</h2>
       <p>Drop your file here, or click to browse</p>
       <div class="exts"><span class="ext">.xlsx</span><span class="ext">.xls</span><span class="ext">.csv</span></div>
+    </div>
+
+    <div class="history-wrap" id="history-wrap">
+      <div class="history-hdr">
+        <h3>Previous Uploaded Files</h3>
+        <span>Saved in this browser only</span>
+      </div>
+      <div id="history-list" class="history-list"></div>
+      <div class="history-actions" style="margin-top:12px;">
+        <button class="hbtn clear" onclick="clearHistory()">Clear History</button>
+      </div>
     </div>
 
     <div class="filebar" id="filebar">
@@ -859,7 +838,6 @@ tbody tr:hover { background: rgba(255,255,255,.03); }
         <div class="pgb-wrap" id="pgb-wrap"></div>
       </div>
     </div>
-
   </main>
 </div>
 
@@ -867,8 +845,14 @@ tbody tr:hover { background: rgba(255,255,255,.03); }
 // ─────────────────────────────────────────────────────────
 //  SECURITY SETTINGS
 // ─────────────────────────────────────────────────────────
-const PASSWORD_HASH = '4f5f4e766fc5f679561988e197d7521666a10004010de88e5e92290fa9e09d50'; //
+const PASSWORD_HASH = '4f5f4e766fc5f679561988e197d7521666a10004010de88e5e92290fa9e09d50';
 const SESSION_KEY = 'kadesh_dashboard_auth';
+
+// ─────────────────────────────────────────────────────────
+//  HISTORY SETTINGS
+// ─────────────────────────────────────────────────────────
+const HISTORY_KEY = 'kadesh_triage_upload_history_v1';
+const HISTORY_LIMIT = 10;
 
 async function sha256(text) {
   const data = new TextEncoder().encode(text);
@@ -900,8 +884,6 @@ async function attemptLogin() {
       status.textContent = 'Incorrect password. Please try again.';
       input.value = '';
       input.focus();
-      input.classList.add('shake');
-      setTimeout(() => input.classList.remove('shake'), 300);
     }
   } catch (e) {
     status.style.color = '#fca5a5';
@@ -943,8 +925,9 @@ document.getElementById('passwordInput').addEventListener('keydown', e => {
 // ─────────────────────────────────────────────────────────
 //  STATE
 // ─────────────────────────────────────────────────────────
-let ALL = [], FILT = [], DET = [];
-let PAGE = 1; const PER = 25;
+let ALL = [], FILT = [], DET = [], DET_VIEW = [];
+let PAGE = 1;
+const PER = 25;
 let FNAME = '';
 
 // ─────────────────────────────────────────────────────────
@@ -955,39 +938,164 @@ document.getElementById('hdr-date').textContent =
 
 const uploadEl = document.getElementById('upload');
 const fileInp  = document.getElementById('fileinp');
-uploadEl.addEventListener('dragover',  e => { e.preventDefault(); uploadEl.classList.add('drag'); });
+
+uploadEl.addEventListener('dragover', e => {
+  e.preventDefault();
+  uploadEl.classList.add('drag');
+});
 uploadEl.addEventListener('dragleave', () => uploadEl.classList.remove('drag'));
 uploadEl.addEventListener('drop', e => {
-  e.preventDefault(); uploadEl.classList.remove('drag');
+  e.preventDefault();
+  uploadEl.classList.remove('drag');
   if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
 });
-fileInp.addEventListener('change', () => { if (fileInp.files[0]) loadFile(fileInp.files[0]); });
+fileInp.addEventListener('change', () => {
+  if (fileInp.files[0]) loadFile(fileInp.files[0]);
+});
+
 initAuth();
+renderHistory();
 
 // ─────────────────────────────────────────────────────────
-//  LOAD FILE
+//  HELPERS
 // ─────────────────────────────────────────────────────────
-function loadFile(file) {
-  FNAME = file.name;
-  const reader = new FileReader();
-  reader.onload = e => {
-    try {
-      const wb = XLSX.read(new Uint8Array(e.target.result), { type:'array', cellDates:false });
-      const ws = wb.Sheets[wb.SheetNames[0]];
-      const raw = XLSX.utils.sheet_to_json(ws, { defval:'', raw:false });
-      parseRows(raw);
-    } catch(err) { alert('Error reading file: ' + err.message); }
-  };
-  reader.readAsArrayBuffer(file);
-}
+function stripKey(s) { return String(s || '').replace(/\s+/g, '').toLowerCase(); }
 
-function stripKey(s) { return String(s).replace(/\s+/g, '').toLowerCase(); }
 function buildLookup(obj) {
   const m = {};
-  for (const k of Object.keys(obj)) m[stripKey(k)] = k;
+  for (const k of Object.keys(obj || {})) m[stripKey(k)] = k;
   return m;
 }
 
+function getV(row, lup, col) {
+  const actual = lup[col];
+  return actual ? String(row[actual] ?? '').trim() : '';
+}
+
+function escapeHtml(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function parseNum(v) {
+  if (v === null || v === undefined || v === '') return null;
+  const n = parseFloat(String(v).replace(/,/g, '').trim());
+  return isNaN(n) ? null : n;
+}
+
+function parseDisplayDate(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  if (isNaN(d)) return '—';
+  return d.toLocaleString('en-AE', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
+
+function fillSel(id, vals) {
+  const s = document.getElementById(id);
+  const first = s.options[0];
+  s.innerHTML = '';
+  s.appendChild(first);
+  vals.forEach(v => {
+    const o = document.createElement('option');
+    o.value = v;
+    o.textContent = v;
+    s.appendChild(o);
+  });
+}
+
+// ─────────────────────────────────────────────────────────
+//  HISTORY
+// ─────────────────────────────────────────────────────────
+function getHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveUploadHistory(entry) {
+  let history = getHistory();
+
+  history = history.filter(h => !(h.name === entry.name && JSON.stringify(h.raw) === JSON.stringify(entry.raw)));
+  history.unshift(entry);
+
+  if (history.length > HISTORY_LIMIT) {
+    history = history.slice(0, HISTORY_LIMIT);
+  }
+
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+}
+
+function renderHistory() {
+  const wrap = document.getElementById('history-wrap');
+  const list = document.getElementById('history-list');
+  const history = getHistory();
+
+  wrap.classList.add('on');
+
+  if (!history.length) {
+    list.innerHTML = `<div class="history-empty">No previous uploaded files found.</div>`;
+    return;
+  }
+
+  list.innerHTML = history.map((item, index) => {
+    const totalRows = Array.isArray(item.raw) ? item.raw.length : 0;
+
+    return `
+      <div class="history-card">
+        <div class="history-name">${escapeHtml(item.name || 'Uploaded File')}</div>
+        <div class="history-meta">
+          Uploaded: ${parseDisplayDate(item.uploadedAt)}<br>
+          Rows: ${totalRows}
+        </div>
+        <div class="history-actions">
+          <button class="hbtn open" onclick="loadHistoryFile(${index})">Open</button>
+          <button class="hbtn del" onclick="deleteHistoryFile(${index})">Delete</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function loadHistoryFile(index) {
+  const history = getHistory();
+  const item = history[index];
+  if (!item || !Array.isArray(item.raw)) {
+    alert('Unable to load this file from history.');
+    return;
+  }
+
+  FNAME = item.name || 'History File';
+  parseRows(item.raw, false);
+}
+
+function deleteHistoryFile(index) {
+  let history = getHistory();
+  history.splice(index, 1);
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  renderHistory();
+}
+
+function clearHistory() {
+  if (!confirm('Are you sure you want to clear all previous uploaded files history?')) return;
+  localStorage.removeItem(HISTORY_KEY);
+  renderHistory();
+}
+
+// ─────────────────────────────────────────────────────────
+//  COLUMN MAP
+// ─────────────────────────────────────────────────────────
 const COLS = {
   token:      'tokenno',
   patient:    'patientname',
@@ -999,80 +1107,120 @@ const COLS = {
   doctor:     'triagedoctor',
   erStatus:   'erstatus',
   ctas:       'ctaslevel',
-  arrival:    'arrivalmode',
+  arrival:    'arrivalmode'
 };
 
-function getV(row, lup, col) {
-  const actual = lup[col];
-  return actual ? String(row[actual] || '').trim() : '';
+// ─────────────────────────────────────────────────────────
+//  LOAD FILE
+// ─────────────────────────────────────────────────────────
+function loadFile(file) {
+  FNAME = file.name;
+  const reader = new FileReader();
+
+  reader.onload = e => {
+    try {
+      const bytes = new Uint8Array(e.target.result);
+      const wb = XLSX.read(bytes, { type:'array', cellDates:false });
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const raw = XLSX.utils.sheet_to_json(ws, { defval:'', raw:false });
+
+      saveUploadHistory({
+        name: file.name,
+        uploadedAt: new Date().toISOString(),
+        raw: raw
+      });
+
+      parseRows(raw, false);
+      renderHistory();
+    } catch(err) {
+      alert('Error reading file: ' + err.message);
+    }
+  };
+
+  reader.readAsArrayBuffer(file);
 }
 
-function parseRows(raw) {
-  if (!raw.length) { alert('No data found.'); return; }
+// ─────────────────────────────────────────────────────────
+//  PARSE ROWS
+// ─────────────────────────────────────────────────────────
+function parseRows(raw, skipSave = true) {
+  if (!raw || !raw.length) {
+    alert('No data found.');
+    return;
+  }
+
   const lup = buildLookup(raw[0]);
 
   ALL = raw.map(row => {
     const token = getV(row, lup, COLS.token);
     if (!token) return null;
 
-    const patient    = getV(row, lup, COLS.patient);
-    const tat1Str    = getV(row, lup, COLS.tat1);
-    const triageEnd  = getV(row, lup, COLS.triageEnd);
-    const docSeen    = getV(row, lup, COLS.docSeen);
-    const speciality = getV(row, lup, COLS.speciality);
-    const doctor     = getV(row, lup, COLS.doctor);
-    const erStatus   = getV(row, lup, COLS.erStatus);
-    const ctas       = getV(row, lup, COLS.ctas);
-    const arrival    = getV(row, lup, COLS.arrival);
+    const patient     = getV(row, lup, COLS.patient);
+    const tat1Str     = getV(row, lup, COLS.tat1);
+    const triageEnd   = getV(row, lup, COLS.triageEnd);
+    const docSeen     = getV(row, lup, COLS.docSeen);
+    const speciality  = getV(row, lup, COLS.speciality);
+    const doctor      = getV(row, lup, COLS.doctor);
+    const erStatus    = getV(row, lup, COLS.erStatus);
+    const ctas        = getV(row, lup, COLS.ctas);
+    const arrival     = getV(row, lup, COLS.arrival);
     const doctorTatStr = getV(row, lup, COLS.doctorTat);
 
-    const tat1 = (tat1Str !== '' && !isNaN(parseFloat(tat1Str))) ? parseFloat(tat1Str) : null;
+    const tat1 = parseNum(tat1Str);
+    const triageToDoc = parseNum(doctorTatStr);
 
-    let triageToDoc = null;
-    if (doctorTatStr !== '' && !isNaN(parseFloat(doctorTatStr))) {
-      triageToDoc = parseFloat(doctorTatStr);
-    }
-
-    return { token, patient, tat1, triageEnd, docSeen, triageToDoc, speciality, doctor, erStatus, ctas, arrival };
+    return {
+      token,
+      patient,
+      tat1,
+      triageEnd,
+      docSeen,
+      triageToDoc,
+      speciality,
+      doctor,
+      erStatus,
+      ctas,
+      arrival
+    };
   }).filter(Boolean);
+
+  if (!skipSave && FNAME) {
+    // already saved during loadFile, so no action here
+  }
 
   FILT = ALL.filter(r => r.tat1 !== null);
   populateFilters();
 
   ['filebar','filters','actbar','kpi-wrap','sum-wrap','det-wrap'].forEach(id =>
     document.getElementById(id).classList.add('on'));
-  document.getElementById('fb-name').textContent = FNAME;
+
+  document.getElementById('fb-name').textContent = FNAME || 'Uploaded File';
   document.getElementById('fb-count').textContent = `· ${FILT.length} triage-completed records (${ALL.length} total rows)`;
 
   renderAll();
 }
 
-function parseTS(s) {
-  if (!s) return null;
-  const d = new Date(s.replace(' ', 'T'));
-  return isNaN(d) ? null : d;
-}
-
 function populateFilters() {
   const base = ALL.filter(r => r.tat1 !== null);
   const uniq = k => [...new Set(base.map(r => r[k]).filter(v => v !== ''))].sort();
+
   fillSel('f-spec',   uniq('speciality'));
   fillSel('f-doc',    uniq('doctor'));
   fillSel('f-status', uniq('erStatus'));
   fillSel('f-ctas',   uniq('ctas'));
   fillSel('f-arr',    uniq('arrival'));
 }
-function fillSel(id, vals) {
-  const s = document.getElementById(id);
-  const first = s.options[0]; s.innerHTML = ''; s.appendChild(first);
-  vals.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; s.appendChild(o); });
-}
+
+// ─────────────────────────────────────────────────────────
+//  FILTERS
+// ─────────────────────────────────────────────────────────
 function applyF() {
   const spec   = document.getElementById('f-spec').value;
   const doc    = document.getElementById('f-doc').value;
   const status = document.getElementById('f-status').value;
   const ctas   = document.getElementById('f-ctas').value;
   const arr    = document.getElementById('f-arr').value;
+
   FILT = ALL.filter(r =>
     r.tat1 !== null &&
     (!spec   || r.speciality === spec) &&
@@ -1081,46 +1229,106 @@ function applyF() {
     (!ctas   || r.ctas === ctas) &&
     (!arr    || r.arrival === arr)
   );
-  PAGE = 1; renderAll();
+
+  PAGE = 1;
+  renderAll();
 }
+
 function resetF() {
   ['f-spec','f-doc','f-status','f-ctas','f-arr'].forEach(id => document.getElementById(id).value = '');
   FILT = ALL.filter(r => r.tat1 !== null);
-  PAGE = 1; renderAll();
+  PAGE = 1;
+  renderAll();
 }
 
+// ─────────────────────────────────────────────────────────
+//  KPI CALC
+// ─────────────────────────────────────────────────────────
 function calcKPI(rows) {
   const n = rows.length;
-  const tatVals = rows.map(r => r.tat1);
+  const tatVals = rows.map(r => r.tat1).filter(v => v !== null);
   const avgTT   = n ? tatVals.reduce((a, b) => a + b, 0) / n : null;
-  const w5n  = rows.filter(r => r.tat1 <= 5).length;
+
+  const w5n  = rows.filter(r => r.tat1 !== null && r.tat1 <= 5).length;
   const w5p  = n ? (w5n / n * 100) : null;
-  const w10n = rows.filter(r => r.tat1 > 5 && r.tat1 <= 10).length;
+
+  const w10n = rows.filter(r => r.tat1 !== null && r.tat1 > 5 && r.tat1 <= 10).length;
   const w10p = n ? (w10n / n * 100) : null;
+
   const tcRows = rows.filter(r => r.triageToDoc !== null);
   const tcN    = tcRows.length;
   const avgTC  = tcN ? tcRows.reduce((a, r) => a + r.triageToDoc, 0) / tcN : null;
+
   const f1 = v => v !== null ? v.toFixed(1) : '—';
-  const f0 = v => v !== null ? v.toFixed(1) : '—';
-  return { n, tatVals, avgTT: f1(avgTT), w5n, w5p: f1(w5p), w10n, w10p: f1(w10p), tcN, avgTC: f0(avgTC) };
+  return {
+    n,
+    avgTT: f1(avgTT),
+    w5n,
+    w5p: f1(w5p),
+    w10n,
+    w10p: f1(w10p),
+    tcN,
+    avgTC: f1(avgTC)
+  };
 }
 
+// ─────────────────────────────────────────────────────────
+//  RENDER
+// ─────────────────────────────────────────────────────────
 function renderAll() {
   const kpi = calcKPI(FILT);
   document.getElementById('rec-pill').innerHTML = `<b>${FILT.length}</b> triage-completed records`;
   renderKPI(kpi);
   renderSummary(kpi);
   DET = [...FILT];
+  DET_VIEW = [...DET];
   document.getElementById('srch').value = '';
+  PAGE = 1;
   renderDetail();
 }
 
 function renderKPI(k) {
   const cards = [
-    { cls: 'blue', label: 'Token to Triage — Average', val: k.avgTT, unit: k.avgTT !== '—' ? 'min' : '', n: k.n, nsub: 'triage-completed patients', foot: 'Source: Triage1 TAT (B-A) column', ico: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>` },
-    { cls: 'green', label: 'Token to Triage ≤ 5 min', val: k.w5p !== '—' ? k.w5p : '—', unit: k.w5p !== '—' ? '%' : '', n: k.w5n, nsub: `of ${k.n} patients`, foot: 'TAT 0 – 5 minutes (within target)', ico: `<svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>` },
-    { cls: 'amber', label: 'Token to Triage 5–10 min', val: k.w10p !== '—' ? k.w10p : '—', unit: k.w10p !== '—' ? '%' : '', n: k.w10n, nsub: `of ${k.n} patients`, foot: 'TAT above 5 and up to 10 minutes', ico: `<svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>` },
-    { cls: 'teal', label: 'Triage to Consultation — Average', val: k.avgTC, unit: k.avgTC !== '—' ? 'min' : '', n: k.tcN, nsub: 'records with Doctor TAT', foot: 'Doctor T A T (E - D) column', ico: `<svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>` },
+    {
+      cls: 'blue',
+      label: 'Token to Triage — Average',
+      val: k.avgTT,
+      unit: k.avgTT !== '—' ? 'min' : '',
+      n: k.n,
+      nsub: 'triage-completed patients',
+      foot: 'Source: Triage1 TAT (B-A) column',
+      ico: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`
+    },
+    {
+      cls: 'green',
+      label: 'Token to Triage ≤ 5 min',
+      val: k.w5p !== '—' ? k.w5p : '—',
+      unit: k.w5p !== '—' ? '%' : '',
+      n: k.w5n,
+      nsub: `of ${k.n} patients`,
+      foot: 'TAT 0 – 5 minutes (within target)',
+      ico: `<svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`
+    },
+    {
+      cls: 'amber',
+      label: 'Token to Triage 5–10 min',
+      val: k.w10p !== '—' ? k.w10p : '—',
+      unit: k.w10p !== '—' ? '%' : '',
+      n: k.w10n,
+      nsub: `of ${k.n} patients`,
+      foot: 'TAT above 5 and up to 10 minutes',
+      ico: `<svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`
+    },
+    {
+      cls: 'teal',
+      label: 'Triage to Consultation — Average',
+      val: k.avgTC,
+      unit: k.avgTC !== '—' ? 'min' : '',
+      n: k.tcN,
+      nsub: 'records with Doctor TAT',
+      foot: 'Doctor T A T (E - D) column',
+      ico: `<svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`
+    }
   ];
 
   document.getElementById('kpi-grid').innerHTML = cards.map(c => `
@@ -1135,16 +1343,18 @@ function renderKPI(k) {
         <div class="k-sub"><b>${c.n}</b> ${c.nsub}</div>
         <div class="k-sub" style="margin-top:2px">${c.foot}</div>
       </div>
-    </div>`).join('');
+    </div>
+  `).join('');
 }
 
 function renderSummary(k) {
   document.getElementById('sum-sub').textContent = `${FILT.length} triage-completed patients · ${FNAME}`;
+
   const rows = [
     { i: 1, cls: 'blue', name: 'Token to Triage — Average TAT', sub: 'Read from Triage1 TAT (B-A)min column · minutes', val: k.avgTT !== '—' ? `${k.avgTT} min` : '—', pct: null, count: k.n, base: k.n },
     { i: 2, cls: 'green', name: 'Token to Triage ≤ 5 min', sub: 'Patients with TAT 0–5 min (within target)', val: `${k.w5n} patients`, pct: k.w5p, pctColor: '#22c55e', count: k.w5n, base: k.n },
     { i: 3, cls: 'amber', name: 'Token to Triage 5–10 min', sub: 'Patients with TAT above 5 and up to 10 min', val: `${k.w10n} patients`, pct: k.w10p, pctColor: '#f59e0b', count: k.w10n, base: k.n },
-    { i: 4, cls: 'teal', name: 'Triage to Consultation — Average TAT', sub: 'Doctor T A T (E - D) column · minutes', val: k.avgTC !== '—' ? `${k.avgTC} min` : '—', pct: null, count: k.tcN, base: k.n },
+    { i: 4, cls: 'teal', name: 'Triage to Consultation — Average TAT', sub: 'Doctor T A T (E - D) column · minutes', val: k.avgTC !== '—' ? `${k.avgTC} min` : '—', pct: null, count: k.tcN, base: k.n }
   ];
 
   document.getElementById('sum-body').innerHTML = rows.map(r => `
@@ -1159,114 +1369,129 @@ function renderSummary(k) {
       </td>
       <td><span class="chip">${r.count}</span></td>
       <td style="color:#cbd5e1;font-size:12px;font-family:'JetBrains Mono',monospace">${r.base}</td>
-    </tr>`).join('');
+    </tr>
+  `).join('');
 }
 
-function doSearch() {
-  const q = document.getElementById('srch').value.toLowerCase();
-  DET = FILT.filter(r =>
-    r.token.toLowerCase().includes(q) ||
-    r.patient.toLowerCase().includes(q) ||
-    r.doctor.toLowerCase().includes(q) ||
-    r.speciality.toLowerCase().includes(q)
-  );
-  PAGE = 1; renderDetail();
-}
-
-function fmtTime(v) {
-  if (!v) return '—';
-  const m = v.match(/T(\d{2}:\d{2})/);
-  if (m) return m[1];
-  const d = new Date(v);
-  if (!isNaN(d)) return d.toTimeString().substring(0, 5);
-  return v.length > 16 ? v.substring(11, 16) : v;
-}
-
-function ctasCls(v) {
-  const m = String(v).match(/level\s*(\d)/i);
-  return m ? `c${m[1]}` : '';
-}
-function ctasShort(v) {
-  if (!v) return '—';
-  const m = String(v).match(/level\s*(\d)[^-]*-\s*(\S+)/i);
-  return m ? `L${m[1]} ${m[2]}` : v;
+function getCtasClass(ctas) {
+  const value = String(ctas || '').trim().toUpperCase();
+  if (value === '1' || value.includes('CTAS 1')) return 'c2';
+  if (value === '2' || value.includes('CTAS 2')) return 'c2';
+  if (value === '3' || value.includes('CTAS 3')) return 'c3';
+  if (value === '4' || value.includes('CTAS 4')) return 'c4';
+  return 'c5';
 }
 
 function renderDetail() {
-  const s = (PAGE - 1) * PER;
-  const page = DET.slice(s, s + PER);
-  document.getElementById('det-sub').textContent = `${DET.length} records`;
-  const body = document.getElementById('det-body');
+  document.getElementById('det-sub').textContent = `${DET_VIEW.length} records · ${FNAME}`;
 
-  if (!page.length) {
-    body.innerHTML = `<tr><td colspan="10"><div class="empty-row">No records match.</div></td></tr>`;
+  const total = DET_VIEW.length;
+  const pages = Math.max(1, Math.ceil(total / PER));
+  if (PAGE > pages) PAGE = pages;
+
+  const start = (PAGE - 1) * PER;
+  const end = start + PER;
+  const rows = DET_VIEW.slice(start, end);
+
+  const tbody = document.getElementById('det-body');
+
+  if (!rows.length) {
+    tbody.innerHTML = `<tr><td colspan="10" class="empty-row">No records found.</td></tr>`;
   } else {
-    body.innerHTML = page.map(r => {
-      const t1c = r.tat1 > 10 ? 'red' : r.tat1 > 5 ? 'amber' : 'green';
-      return `<tr>
-        <td style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;white-space:nowrap">${r.token}</td>
-        <td style="max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.patient || '—'}</td>
-        <td style="text-align:center"><span class="pill ${t1c}" style="font-size:11.5px;padding:4px 10px">${r.tat1}</span></td>
-        <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#cbd5e1">${fmtTime(r.triageEnd)}</td>
-        <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#cbd5e1">${fmtTime(r.docSeen)}</td>
-        <td style="text-align:center">${r.triageToDoc !== null ? `<span class="pill teal" style="font-size:11.5px;padding:4px 10px">${r.triageToDoc}</span>` : `<span style="color:#64748b">—</span>`}</td>
-        <td><span class="${ctasCls(r.ctas)}">${ctasShort(r.ctas)}</span></td>
-        <td style="font-size:12px;color:#e2e8f0">${r.speciality || '—'}</td>
-        <td style="font-size:12px;color:#e2e8f0">${r.doctor || '—'}</td>
-        <td style="font-size:12px;color:#e2e8f0">${r.erStatus || '—'}</td>
-      </tr>`;
-    }).join('');
+    tbody.innerHTML = rows.map(r => `
+      <tr>
+        <td><span class="chip">${escapeHtml(r.token)}</span></td>
+        <td><div class="mn">${escapeHtml(r.patient || '—')}</div></td>
+        <td><span class="pill blue">${r.tat1 !== null ? r.tat1.toFixed(1) : '—'}</span></td>
+        <td>${escapeHtml(r.triageEnd || '—')}</td>
+        <td>${escapeHtml(r.docSeen || '—')}</td>
+        <td><span class="pill teal">${r.triageToDoc !== null ? r.triageToDoc.toFixed(1) : '—'}</span></td>
+        <td><span class="${getCtasClass(r.ctas)}">${escapeHtml(r.ctas || '—')}</span></td>
+        <td>${escapeHtml(r.speciality || '—')}</td>
+        <td>${escapeHtml(r.doctor || '—')}</td>
+        <td>${escapeHtml(r.erStatus || '—')}</td>
+      </tr>
+    `).join('');
   }
 
-  const total = DET.length;
-  const pages = Math.ceil(total / PER) || 1;
-  document.getElementById('pg-info').textContent = `${total ? s + 1 : 0}–${Math.min(s + PER, total)} of ${total}`;
+  document.getElementById('pg-info').textContent =
+    total ? `Showing ${start + 1}-${Math.min(end, total)} of ${total}` : '0 records';
 
-  const wrap = document.getElementById('pgb-wrap'); wrap.innerHTML = '';
-  const btn = (label, pg, dis, act) => {
-    const b = document.createElement('button');
-    b.className = 'pgb' + (act ? ' active' : '');
-    b.textContent = label; b.disabled = dis;
-    b.onclick = () => { PAGE = pg; renderDetail(); };
-    wrap.appendChild(b);
-  };
-  btn('‹', PAGE - 1, PAGE === 1);
-  const st = Math.max(1, PAGE - 2), en = Math.min(pages, st + 4);
-  for (let i = st; i <= en; i++) btn(i, i, false, i === PAGE);
-  btn('›', PAGE + 1, PAGE === pages);
+  renderPager(pages);
 }
 
-function dlExcel() {
-  const k = calcKPI(FILT);
-  const summary = [
-    ['TRIAGE TAT — KPI SUMMARY REPORT'],
-    [''],
-    ['Source File', FNAME],
-    ['Generated', new Date().toLocaleString('en-AE')],
-    ['Triage-Completed Patients (Base)', k.n],
-    [''],
-    ['#', 'Metric', 'Value', 'Unit', 'Percentage (%)', 'Count', 'Base (n)'],
-    [1, 'Token to Triage — Average TAT', k.avgTT, 'minutes', 'N/A', k.n, k.n],
-    [2, 'Token to Triage ≤ 5 min', k.w5n, 'patients', k.w5p + '%', k.w5n, k.n],
-    [3, 'Token to Triage 5–10 min', k.w10n, 'patients', k.w10p + '%', k.w10n, k.n],
-    [4, 'Triage to Consultation — Average TAT (Doctor TAT)', k.avgTC, 'minutes', 'N/A', k.tcN, k.n],
-  ];
+function renderPager(pages) {
+  const wrap = document.getElementById('pgb-wrap');
+  if (pages <= 1) {
+    wrap.innerHTML = '';
+    return;
+  }
 
-  const detail = [
-    ['Token No','Patient Name','Token→Triage (min)','Triage End Time (C)','Doctor Seen Time (E)','Doctor TAT (E-D) (min)','CTAS Level','Speciality','Triage Doctor','ER Status'],
-    ...FILT.map(r => [r.token, r.patient, r.tat1 !== null ? r.tat1 : '', r.triageEnd, r.docSeen, r.triageToDoc !== null ? r.triageToDoc : '', r.ctas, r.speciality, r.doctor, r.erStatus])
+  let html = '';
+  html += `<button class="pgb" ${PAGE === 1 ? 'disabled' : ''} onclick="goPage(${PAGE - 1})">Prev</button>`;
+
+  const maxButtons = 5;
+  let from = Math.max(1, PAGE - 2);
+  let to = Math.min(pages, from + maxButtons - 1);
+  from = Math.max(1, to - maxButtons + 1);
+
+  for (let i = from; i <= to; i++) {
+    html += `<button class="pgb ${i === PAGE ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+  }
+
+  html += `<button class="pgb" ${PAGE === pages ? 'disabled' : ''} onclick="goPage(${PAGE + 1})">Next</button>`;
+  wrap.innerHTML = html;
+}
+
+function goPage(p) {
+  PAGE = p;
+  renderDetail();
+}
+
+function doSearch() {
+  const q = document.getElementById('srch').value.trim().toLowerCase();
+
+  if (!q) {
+    DET_VIEW = [...DET];
+  } else {
+    DET_VIEW = DET.filter(r =>
+      String(r.token || '').toLowerCase().includes(q) ||
+      String(r.patient || '').toLowerCase().includes(q) ||
+      String(r.doctor || '').toLowerCase().includes(q) ||
+      String(r.speciality || '').toLowerCase().includes(q) ||
+      String(r.erStatus || '').toLowerCase().includes(q) ||
+      String(r.ctas || '').toLowerCase().includes(q)
+    );
+  }
+
+  PAGE = 1;
+  renderDetail();
+}
+
+// ─────────────────────────────────────────────────────────
+//  DOWNLOAD SUMMARY EXCEL
+// ─────────────────────────────────────────────────────────
+function dlExcel() {
+  if (!FILT.length) {
+    alert('No data available to export.');
+    return;
+  }
+
+  const k = calcKPI(FILT);
+
+  const exportRows = [
+    { Metric: 'Token to Triage — Average TAT', Value: k.avgTT !== '—' ? `${k.avgTT} min` : '—', Percentage: '', Count: k.n, Base: k.n, File: FNAME },
+    { Metric: 'Token to Triage ≤ 5 min', Value: `${k.w5n} patients`, Percentage: k.w5p !== '—' ? `${k.w5p}%` : '', Count: k.w5n, Base: k.n, File: FNAME },
+    { Metric: 'Token to Triage 5–10 min', Value: `${k.w10n} patients`, Percentage: k.w10p !== '—' ? `${k.w10p}%` : '', Count: k.w10n, Base: k.n, File: FNAME },
+    { Metric: 'Triage to Consultation — Average TAT', Value: k.avgTC !== '—' ? `${k.avgTC} min` : '—', Percentage: '', Count: k.tcN, Base: k.n, File: FNAME }
   ];
 
   const wb = XLSX.utils.book_new();
-  const ws1 = XLSX.utils.aoa_to_sheet(summary);
-  ws1['!cols'] = [{wch:4},{wch:52},{wch:20},{wch:12},{wch:18},{wch:12},{wch:10}];
-  XLSX.utils.book_append_sheet(wb, ws1, 'KPI Summary');
+  const ws = XLSX.utils.json_to_sheet(exportRows);
+  XLSX.utils.book_append_sheet(wb, ws, 'KPI Summary');
 
-  const ws2 = XLSX.utils.aoa_to_sheet(detail);
-  ws2['!cols'] = [{wch:14},{wch:32},{wch:20},{wch:24},{wch:24},{wch:20},{wch:30},{wch:24},{wch:28},{wch:16}];
-  XLSX.utils.book_append_sheet(wb, ws2, 'Patient Detail');
-
-  XLSX.writeFile(wb, `TAT_${FNAME.replace(/\.[^/.]+$/, '')}_${new Date().toISOString().slice(0,10)}.xlsx`);
+  const safeName = (FNAME || 'triage_summary').replace(/\.[^/.]+$/, '');
+  XLSX.writeFile(wb, `${safeName}_summary.xlsx`);
 }
 </script>
 </body>
